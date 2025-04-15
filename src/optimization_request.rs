@@ -21,6 +21,10 @@ pub struct OptimizationRequest {
     #[serde(rename = "restore", default)]
     pub restore: bool,
 
+    /// Indicates whether missing outputs should be restored.
+    #[serde(rename = "restoreonly", default)]
+    pub restoreonly: bool,
+
     /// A list of input `Item`s required for the recipe.
     #[serde(rename = "inputs")]
     pub inputs: Vec<RequestItem>,
