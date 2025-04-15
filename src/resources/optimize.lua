@@ -93,6 +93,7 @@ local function prepareMessage(slot)
         ticks = tonumber(args.ticks),
         skip = args.skip,
         restore = args.restore,
+        restoreonly = args.restoreonly,
         inputs = {},
         outputs = {}
     }
@@ -180,7 +181,7 @@ run:flag("-q --quiet", "Suppress all output except for errors.")
 run:flag("-b --batch", "Run for approximately 127 ticks, unless the recipe requires more time.")
 run:flag("-s --skip", "Skip patterning non-consumed items.")
 run:flag("-r --restore", "Restores missing outputs.")
-run:flag("-ro --restore-only", "Restores missing outputs.")
+run:flag("-ro --restoreonly", "Restores missing outputs without optimization.")
 run:option("-t --ticks", "Run for approximately <ticks> ticks, unless the recipe requires more time.", "20")
 parser:command("list", "Display a list of available machines."):action(listMachines)
 args = parser:parse(args)
