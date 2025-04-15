@@ -181,10 +181,19 @@ run:flag("-q --quiet", "Suppress all output except for errors.")
 run:flag("-b --batch", "Run for approximately 127 ticks, unless the recipe requires more time.")
 run:flag("-s --skip", "Skip patterning non-consumed items.")
 run:flag("-r --restore", "Restores missing outputs.")
-run:flag("-ro --restoreonly", "Restores missing outputs without optimization.")
 run:option("-t --ticks", "Run for approximately <ticks> ticks, unless the recipe requires more time.", "20")
+
+local ro = parser:command("ro", "Only restore missing items for a specific machine.")
+ro:argument("machine", "The target machine to restore.")
+
 parser:command("list", "Display a list of available machines."):action(listMachines)
 args = parser:parse(args)
+
+if args.command == "ro" then
+    -- Restore logic only
+    args.restore = true
+    args.restoreonly = true
+end
 
 if args.machine then
     if args.batch then args.ticks = 127 end
